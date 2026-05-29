@@ -1,0 +1,840 @@
+﻿<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Small Utilities Toolbox</title>
+    <style>
+      :root {
+        --primary-blue: #4d8dff;
+        --light-blue: #8fd3ff;
+        --warm-beige: #f8f1e7;
+        --dark-text: #2f3a4a;
+        --muted-text: #647084;
+        --card-white: #ffffff;
+        --warning-yellow: #fff4c7;
+        --soft-red: #ffe3e3;
+        --line: #e3dfd7;
+        --shadow: 0 18px 45px rgba(47, 58, 74, 0.12);
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        margin: 0;
+        background: var(--warm-beige);
+        color: var(--dark-text);
+        font-family: "LXGW WenKai TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+        line-height: 1.7;
+      }
+      
+      a {
+        color: inherit;
+      }
+      
+      .toolbox-page {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 28px 0 48px;
+      }
+      
+      .toolbox-hero,
+      .intro-section,
+      .notice-section,
+      .filter-section,
+      .updates-section,
+      .faq-section,
+      .contact-section {
+        margin-bottom: 24px;
+      }
+      
+      .toolbox-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.7fr);
+        gap: 24px;
+        align-items: stretch;
+        min-height: 340px;
+        padding: 34px;
+        border: 1px solid rgba(77, 141, 255, 0.22);
+        border-radius: 8px;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(143, 211, 255, 0.28)),
+          var(--card-white);
+        box-shadow: var(--shadow);
+      }
+      
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .eyebrow,
+      .section-kicker,
+      .tool-category {
+        margin: 0;
+        color: var(--primary-blue);
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+      
+      h1,
+      h2,
+      h3,
+      p {
+        overflow-wrap: anywhere;
+      }
+      
+      h1 {
+        max-width: 720px;
+        margin: 8px 0 14px;
+        font-size: clamp(2.1rem, 4vw, 4rem);
+        line-height: 1.1;
+        letter-spacing: 0;
+      }
+      
+      h2 {
+        margin: 4px 0 10px;
+        font-size: clamp(1.45rem, 2vw, 2rem);
+        line-height: 1.25;
+        letter-spacing: 0;
+      }
+      
+      h3 {
+        margin: 2px 0 0;
+        font-size: 1.35rem;
+        line-height: 1.25;
+        letter-spacing: 0;
+      }
+      
+      .hero-description {
+        max-width: 700px;
+        margin: 0;
+        color: var(--muted-text);
+        font-size: 1.1rem;
+      }
+      
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 26px;
+      }
+      
+      .button,
+      .tool-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 9px 16px;
+        border-radius: 8px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+      }
+      
+      .button:hover,
+      .tool-action:hover {
+        transform: translateY(-1px);
+      }
+      
+      .button-primary,
+      .tool-action.primary {
+        background: var(--primary-blue);
+        color: #ffffff;
+        box-shadow: 0 10px 22px rgba(77, 141, 255, 0.28);
+      }
+      
+      .button-secondary,
+      .tool-action.secondary {
+        border: 1px solid rgba(77, 141, 255, 0.45);
+        background: #ffffff;
+        color: var(--primary-blue);
+      }
+      
+      .tool-action.light {
+        background: #f4f8ff;
+        color: var(--dark-text);
+      }
+      
+      .tool-action.is-disabled {
+        cursor: not-allowed;
+        opacity: 0.48;
+        pointer-events: none;
+      }
+      
+      .hero-panel {
+        align-self: center;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.84);
+      }
+      
+      .panel-line {
+        display: grid;
+        gap: 2px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      
+      .panel-line:last-child {
+        border-bottom: 0;
+      }
+      
+      .panel-label {
+        color: var(--muted-text);
+        font-size: 0.92rem;
+      }
+      
+      .intro-section,
+      .updates-section,
+      .contact-section {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
+        gap: 28px;
+        align-items: start;
+        padding: 24px 4px;
+      }
+      
+      .intro-section p,
+      .updates-section p,
+      .contact-section p {
+        margin: 0;
+        color: var(--muted-text);
+      }
+      
+      .notice-section {
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr);
+        gap: 16px;
+        padding: 22px;
+        border: 1px solid #f0d87c;
+        border-radius: 8px;
+        background: var(--warning-yellow);
+      }
+      
+      .notice-icon {
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: #ffffff;
+        color: #9a6b00;
+        font-weight: 800;
+      }
+      
+      .notice-section p {
+        margin: 8px 0 0;
+      }
+      
+      .filter-section {
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--card-white);
+      }
+      
+      .filter-header {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.8fr) minmax(280px, 1fr);
+        gap: 20px;
+        align-items: end;
+      }
+      
+      .search-box {
+        display: grid;
+        gap: 6px;
+        color: var(--muted-text);
+        font-weight: 700;
+      }
+      
+      .search-box input {
+        width: 100%;
+        min-height: 46px;
+        border: 1px solid #cfd8e6;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: var(--dark-text);
+        font: inherit;
+        background: #fbfdff;
+      }
+      
+      .search-box input:focus {
+        border-color: var(--primary-blue);
+        outline: 3px solid rgba(77, 141, 255, 0.18);
+      }
+      
+      .filter-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+      
+      .filter-button {
+        min-height: 40px;
+        border: 1px solid #cfd8e6;
+        border-radius: 999px;
+        padding: 8px 14px;
+        background: #ffffff;
+        color: var(--dark-text);
+        cursor: pointer;
+        font: inherit;
+        font-weight: 700;
+      }
+      
+      .filter-button.is-active {
+        border-color: var(--primary-blue);
+        background: var(--primary-blue);
+        color: #ffffff;
+      }
+      
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+      
+      .tool-card {
+        display: flex;
+        min-height: 100%;
+        flex-direction: column;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--card-white);
+        box-shadow: 0 10px 28px rgba(47, 58, 74, 0.08);
+      }
+      
+      .tool-card-header {
+        display: grid;
+        grid-template-columns: 54px minmax(0, 1fr);
+        gap: 12px;
+        align-items: center;
+      }
+      
+      .tool-icon-placeholder {
+        display: grid;
+        place-items: center;
+        width: 54px;
+        height: 54px;
+        border: 2px solid rgba(77, 141, 255, 0.24);
+        border-radius: 8px;
+        background: linear-gradient(135deg, #ffffff, #e8f5ff);
+        color: var(--primary-blue);
+        font-size: 1.45rem;
+        font-weight: 900;
+      }
+      
+      .tool-description {
+        margin: 16px 0 14px;
+        color: var(--muted-text);
+      }
+      
+      .tool-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+      
+      .tool-meta span {
+        display: inline-flex;
+        align-items: center;
+        min-height: 30px;
+        border-radius: 999px;
+        padding: 4px 9px;
+        background: #edf5ff;
+        color: #315f9e;
+        font-size: 0.86rem;
+        font-weight: 700;
+      }
+      
+      .feature-list {
+        display: grid;
+        gap: 6px;
+        margin: 0 0 18px;
+        padding-left: 20px;
+        color: var(--dark-text);
+      }
+      
+      .tool-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+        margin-top: auto;
+      }
+      
+      .tool-action {
+        min-height: 40px;
+        padding: 8px 10px;
+        font-size: 0.92rem;
+      }
+      
+      .empty-message {
+        margin: 18px 0 0;
+        padding: 20px;
+        border: 1px dashed #b7c9e6;
+        border-radius: 8px;
+        background: #ffffff;
+        color: var(--muted-text);
+        text-align: center;
+      }
+      
+      .faq-section {
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--card-white);
+      }
+      
+      details {
+        border-top: 1px solid var(--line);
+        padding: 14px 0;
+      }
+      
+      details:last-child {
+        padding-bottom: 0;
+      }
+      
+      summary {
+        cursor: pointer;
+        color: var(--dark-text);
+        font-weight: 800;
+      }
+      
+      details p {
+        margin: 8px 0 0;
+        color: var(--muted-text);
+      }
+      
+      .contact-section {
+        border-top: 1px solid rgba(47, 58, 74, 0.12);
+      }
+      
+      @media (max-width: 1024px) {
+        .tools-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      
+        .toolbox-hero {
+          grid-template-columns: 1fr;
+        }
+      }
+      
+      @media (max-width: 720px) {
+        .toolbox-page {
+          width: min(100% - 22px, 1180px);
+          padding-top: 12px;
+        }
+      
+        .toolbox-hero,
+        .filter-section,
+        .faq-section {
+          padding: 18px;
+        }
+      
+        .intro-section,
+        .updates-section,
+        .contact-section,
+        .filter-header {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+      
+        .tools-grid {
+          grid-template-columns: 1fr;
+        }
+      
+        .notice-section {
+          grid-template-columns: 1fr;
+        }
+      
+        .hero-actions,
+        .filter-buttons {
+          align-items: stretch;
+          flex-direction: column;
+        }
+      
+        .button,
+        .filter-button {
+          width: 100%;
+        }
+      }
+      
+      @media (max-width: 420px) {
+        .tool-actions {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="toolbox-page">
+      <section class="toolbox-hero" aria-labelledby="pageTitle">
+        <div class="hero-content">
+          <p class="eyebrow">Toolbox</p>
+          <h1 id="pageTitle">Small Utilities Toolbox</h1>
+          <p class="hero-description">
+            收錄幾個實用的 Windows 小工具，協助處理 PDF、圖片、音訊與 YouTube 下載等日常工作。
+          </p>
+          <div class="hero-actions" aria-label="頁面捷徑">
+            <a href="#toolsGrid" class="button button-primary">查看工具</a>
+            <a href="#faq" class="button button-secondary">常見問題</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="工具箱摘要">
+          <div class="panel-line">
+            <span class="panel-label">目前工具</span>
+            <strong>4</strong>
+          </div>
+          <div class="panel-line">
+            <span class="panel-label">支援系統</span>
+            <strong>Windows 10 / 11</strong>
+          </div>
+          <div class="panel-line">
+            <span class="panel-label">下載來源</span>
+            <strong>GitHub Releases</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro-section" aria-labelledby="introTitle">
+        <div>
+          <p class="section-kicker">快速找到需要的工具</p>
+          <h2 id="introTitle">適合一般使用者的工具下載頁</h2>
+        </div>
+        <p>
+          每張工具卡都會列出版本、更新日期、支援系統、主要功能與下載按鈕。正式下載以 GitHub Releases 為主，Google Drive 可作為備用鏡像。
+        </p>
+      </section>
+
+      <section class="notice-section" aria-labelledby="noticeTitle">
+        <div class="notice-icon" aria-hidden="true">!</div>
+        <div>
+          <h2 id="noticeTitle">下載前請先確認</h2>
+          <p>
+            這些工具是小型 Windows 實用程式，可能沒有商業程式碼簽章憑證。第一次開啟時，Windows 或防毒軟體可能會跳出安全提醒。
+          </p>
+          <p>
+            請只從本頁官方連結下載。如果防毒軟體隔離檔案，請先確認版本與來源，再決定是否還原或允許執行。
+          </p>
+        </div>
+      </section>
+
+      <section class="filter-section" aria-labelledby="filterTitle">
+        <div class="filter-header">
+          <div>
+            <p class="section-kicker">搜尋與分類</p>
+            <h2 id="filterTitle">選擇你需要的工具</h2>
+          </div>
+          <label class="search-box" for="toolSearchInput">
+            <span>搜尋</span>
+            <input type="search" id="toolSearchInput" placeholder="輸入工具名稱或功能，例如 PDF、批次、音訊">
+          </label>
+        </div>
+        <div class="filter-buttons" id="filterButtons" aria-label="工具分類"></div>
+      </section>
+
+      <section class="tools-grid" id="toolsGrid" aria-live="polite"></section>
+      <p class="empty-message" id="emptyMessage" hidden>目前沒有符合條件的工具，請換個關鍵字或分類試試。</p>
+
+      <section class="updates-section" aria-labelledby="updatesTitle">
+        <p class="section-kicker">版本資訊</p>
+        <h2 id="updatesTitle">更新方式</h2>
+        <p>
+          發佈新版工具時，請先在各工具的 GitHub repository 建立 Release，再把下載檔、使用手冊與版本說明連結更新到資料檔。
+        </p>
+      </section>
+
+      <section class="faq-section" id="faq" aria-labelledby="faqTitle">
+        <p class="section-kicker">FAQ</p>
+        <h2 id="faqTitle">常見問題</h2>
+        <details>
+          <summary>我需要安裝這些工具嗎？</summary>
+          <p>多數工具是 portable 版本。下載 ZIP 檔後解壓縮，再執行資料夾內的 EXE 檔即可。</p>
+        </details>
+        <details>
+          <summary>為什麼 Windows 會顯示安全提醒？</summary>
+          <p>小型個人工具通常沒有商業程式碼簽章憑證，所以 Windows 可能會要求你確認後再執行。</p>
+        </details>
+        <details>
+          <summary>GitHub 上的 Source code 是什麼？</summary>
+          <p>Source code 是給開發者看的原始碼。一般使用者請下載標示 Windows、Portable、ZIP 或工具名稱的發佈檔。</p>
+        </details>
+        <details>
+          <summary>可以只把 EXE 複製到桌面嗎？</summary>
+          <p>不建議。有些工具需要同一個資料夾內的其他檔案。建議在桌面建立捷徑。</p>
+        </details>
+        <details>
+          <summary>防毒軟體移除工具時該怎麼辦？</summary>
+          <p>請先確認檔案是從本頁官方連結下載，並確認版本正確。只有在你信任來源時，才從隔離區還原。</p>
+        </details>
+      </section>
+
+      <section class="contact-section" aria-labelledby="contactTitle">
+        <div>
+          <p class="section-kicker">回報問題</p>
+          <h2 id="contactTitle">遇到問題時</h2>
+        </div>
+        <p>
+          回報問題時，請附上工具名稱、版本號、錯誤畫面截圖，以及你操作到哪一步發生問題。這樣比較容易快速判斷原因。
+        </p>
+      </section>
+    </main>
+
+<script>
+      const categories = [
+        {
+          id: "all",
+          label: "全部工具"
+        },
+        {
+          id: "document",
+          label: "文件工具"
+        },
+        {
+          id: "image",
+          label: "圖片工具"
+        },
+        {
+          id: "audio",
+          label: "音訊工具"
+        },
+        {
+          id: "video",
+          label: "影片工具"
+        }
+      ];
+      
+      const toolsData = [
+        {
+          id: "pdf-toolkit",
+          category: "document",
+          name: "PDF Toolkit",
+          version: "v2.1.1",
+          updatedAt: "2026-05-28",
+          system: "Windows 10 / 11",
+          description: "PDF 壓縮、合併、分割與圖片轉 PDF 的 Windows 小工具。",
+          features: [
+            "PDF 壓縮",
+            "PDF 合併",
+            "PDF 分割",
+            "圖片轉 PDF",
+            "拖曳檔案支援"
+          ],
+          primaryDownloadUrl: "PASTE_GITHUB_RELEASE_ASSET_URL_HERE",
+          backupDownloadUrl: "PASTE_GOOGLE_DRIVE_BACKUP_URL_HERE",
+          manualUrl: "PASTE_USER_GUIDE_URL_HERE",
+          changelogUrl: "PASTE_RELEASE_NOTES_URL_HERE",
+          icon: "../assets/icons/pdf-toolkit.png",
+          screenshot: "../assets/screenshots/pdf-toolkit.png"
+        },
+        {
+          id: "image-converter",
+          category: "image",
+          name: "Image Converter",
+          version: "v2.0.0",
+          updatedAt: "2026-05-28",
+          system: "Windows 10 / 11",
+          description: "可處理 HEIF、JPG、PNG、WEBP 等格式轉換的 Windows 圖片工具。",
+          features: [
+            "HEIF 轉 JPG",
+            "PNG / JPG / WEBP 轉換",
+            "批次轉換",
+            "可捲動介面",
+            "自訂輸出資料夾"
+          ],
+          primaryDownloadUrl: "PASTE_GITHUB_RELEASE_ASSET_URL_HERE",
+          backupDownloadUrl: "PASTE_GOOGLE_DRIVE_BACKUP_URL_HERE",
+          manualUrl: "PASTE_USER_GUIDE_URL_HERE",
+          changelogUrl: "PASTE_RELEASE_NOTES_URL_HERE",
+          icon: "../assets/icons/image-converter.png",
+          screenshot: "../assets/screenshots/image-converter.png"
+        },
+        {
+          id: "audio-converter",
+          category: "audio",
+          name: "Audio Converter",
+          version: "v3.0.0",
+          updatedAt: "2026-05-28",
+          system: "Windows 10 / 11",
+          description: "支援音訊格式轉換、位元率、取樣率與批次處理的 Windows 音訊工具。",
+          features: [
+            "MP3 / WAV / M4A / FLAC 轉換",
+            "批次轉換",
+            "取樣率設定",
+            "位元率設定",
+            "FFmpeg 整合"
+          ],
+          primaryDownloadUrl: "PASTE_GITHUB_RELEASE_ASSET_URL_HERE",
+          backupDownloadUrl: "PASTE_GOOGLE_DRIVE_BACKUP_URL_HERE",
+          manualUrl: "PASTE_USER_GUIDE_URL_HERE",
+          changelogUrl: "PASTE_RELEASE_NOTES_URL_HERE",
+          icon: "../assets/icons/audio-converter.png",
+          screenshot: "../assets/screenshots/audio-converter.png"
+        },
+        {
+          id: "youtube-downloader",
+          category: "video",
+          name: "YouTube Downloader",
+          version: "v1.7.0",
+          updatedAt: "2026-05-28",
+          system: "Windows 10 / 11",
+          description: "使用 yt-dlp 下載 YouTube 音訊或影片，支援播放清單與品質選項。",
+          features: [
+            "YouTube 音訊下載",
+            "YouTube 影片下載",
+            "播放清單支援",
+            "品質選項",
+            "yt-dlp 整合"
+          ],
+          primaryDownloadUrl: "PASTE_GITHUB_RELEASE_ASSET_URL_HERE",
+          backupDownloadUrl: "PASTE_GOOGLE_DRIVE_BACKUP_URL_HERE",
+          manualUrl: "PASTE_USER_GUIDE_URL_HERE",
+          changelogUrl: "PASTE_RELEASE_NOTES_URL_HERE",
+          icon: "../assets/icons/youtube-downloader.png",
+          screenshot: "../assets/screenshots/youtube-downloader.png"
+        }
+      ];
+      
+      
+      const state = {
+        activeCategory: "all",
+        keyword: ""
+      };
+      
+      const toolsGrid = document.querySelector("#toolsGrid");
+      const emptyMessage = document.querySelector("#emptyMessage");
+      const searchInput = document.querySelector("#toolSearchInput");
+      const filterButtons = document.querySelector("#filterButtons");
+      
+      function createPlaceholderIcon(tool) {
+        const firstLetter = tool.name.charAt(0).toUpperCase();
+        return `<div class="tool-icon-placeholder" aria-hidden="true">${firstLetter}</div>`;
+      }
+      
+      function isPlaceholderUrl(url) {
+        return !url || url.startsWith("PASTE_");
+      }
+      
+      function createActionLink(url, label, styleName) {
+        const disabled = isPlaceholderUrl(url);
+        const href = disabled ? "#" : url;
+        const ariaDisabled = disabled ? ' aria-disabled="true" tabindex="-1"' : "";
+        const title = disabled ? "連結尚未設定" : label;
+      
+        return `<a class="tool-action ${styleName}${disabled ? " is-disabled" : ""}" href="${href}" target="_blank" rel="noopener"${ariaDisabled} title="${title}">${label}</a>`;
+      }
+      
+      function getCategoryLabel(categoryId) {
+        const category = categories.find((item) => item.id === categoryId);
+        return category ? category.label : categoryId;
+      }
+      
+      function normalizeText(value) {
+        return value.toString().trim().toLowerCase();
+      }
+      
+      function toolMatchesKeyword(tool, keyword) {
+        if (!keyword) {
+          return true;
+        }
+      
+        const searchableText = [
+          tool.name,
+          tool.description,
+          tool.version,
+          tool.system,
+          ...tool.features
+        ].join(" ");
+      
+        return normalizeText(searchableText).includes(normalizeText(keyword));
+      }
+      
+      function getFilteredTools() {
+        return toolsData.filter((tool) => {
+          const matchesCategory = state.activeCategory === "all" || tool.category === state.activeCategory;
+          const matchesKeyword = toolMatchesKeyword(tool, state.keyword);
+          return matchesCategory && matchesKeyword;
+        });
+      }
+      
+      function renderCategories() {
+        filterButtons.innerHTML = categories.map((category) => {
+          const isActive = category.id === state.activeCategory;
+          return `
+            <button class="filter-button${isActive ? " is-active" : ""}" type="button" data-filter="${category.id}" aria-pressed="${isActive}">
+              ${category.label}
+            </button>
+          `;
+        }).join("");
+      }
+      
+      function renderTools() {
+        const filteredTools = getFilteredTools();
+      
+        emptyMessage.hidden = filteredTools.length > 0;
+        toolsGrid.innerHTML = filteredTools.map((tool) => `
+          <article class="tool-card">
+            <div class="tool-card-header">
+              ${createPlaceholderIcon(tool)}
+              <div>
+                <p class="tool-category">${getCategoryLabel(tool.category)}</p>
+                <h3>${tool.name}</h3>
+              </div>
+            </div>
+            <p class="tool-description">${tool.description}</p>
+            <div class="tool-meta" aria-label="${tool.name} 版本資訊">
+              <span>最新版 ${tool.version}</span>
+              <span>更新 ${tool.updatedAt}</span>
+              <span>${tool.system}</span>
+            </div>
+            <ul class="feature-list">
+              ${tool.features.map((feature) => `<li>${feature}</li>`).join("")}
+            </ul>
+            <div class="tool-actions">
+              ${createActionLink(tool.primaryDownloadUrl, "主要下載", "primary")}
+              ${createActionLink(tool.backupDownloadUrl, "備用下載", "secondary")}
+              ${createActionLink(tool.manualUrl, "使用手冊", "light")}
+              ${createActionLink(tool.changelogUrl, "版本說明", "light")}
+            </div>
+          </article>
+        `).join("");
+      }
+      
+      function updateView() {
+        renderCategories();
+        renderTools();
+      }
+      
+      searchInput.addEventListener("input", (event) => {
+        state.keyword = event.target.value;
+        renderTools();
+      });
+      
+      filterButtons.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-filter]");
+        if (!button) {
+          return;
+        }
+      
+        state.activeCategory = button.dataset.filter;
+        updateView();
+      });
+      
+      updateView();
+    </script>
+  </body>
+</html>
+
