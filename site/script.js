@@ -18,12 +18,11 @@ function isPlaceholderUrl(url) {
 }
 
 function createActionLink(url, label, styleName) {
-  const disabled = isPlaceholderUrl(url);
-  const href = disabled ? "#" : url;
-  const ariaDisabled = disabled ? ' aria-disabled="true" tabindex="-1"' : "";
-  const title = disabled ? "連結尚未設定" : label;
+  if (isPlaceholderUrl(url)) {
+    return "";
+  }
 
-  return `<a class="tool-action ${styleName}${disabled ? " is-disabled" : ""}" href="${href}" target="_blank" rel="noopener"${ariaDisabled} title="${title}">${label}</a>`;
+  return `<a class="tool-action ${styleName}" href="${url}" target="_blank" rel="noopener" title="${label}">${label}</a>`;
 }
 
 function getCategoryLabel(categoryId) {
@@ -93,7 +92,7 @@ function renderTools() {
         ${tool.features.map((feature) => `<li>${feature}</li>`).join("")}
       </ul>
       <div class="tool-actions">
-        ${createActionLink(tool.primaryDownloadUrl, "主要下載", "primary")}
+        ${createActionLink(tool.primaryDownloadUrl, "立即下載", "primary")}
         ${createActionLink(tool.backupDownloadUrl, "備用下載", "secondary")}
         ${createActionLink(tool.manualUrl, "使用手冊", "light")}
         ${createActionLink(tool.changelogUrl, "版本說明", "light")}
