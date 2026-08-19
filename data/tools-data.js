@@ -92,8 +92,8 @@ const toolsData = [
     id: "youtube-downloader",
     category: "video",
     name: "YouTube Downloader",
-    version: "v2.0.0",
-    updatedAt: "2026-05-29",
+    version: "v2.1.0",
+    updatedAt: "2026-08-19",
     system: "Windows 10 / 11",
     description: "使用 yt-dlp 下載 YouTube 音訊或影片，支援播放清單與品質選項。",
     features: [
@@ -103,10 +103,10 @@ const toolsData = [
       "品質選項",
       "yt-dlp 整合"
     ],
-    primaryDownloadUrl: "https://github.com/yu020210/youtube-downloader/releases/download/v2.0.0/YouTubeDownloader_v2.0.0_Windows.zip",
+    primaryDownloadUrl: "https://github.com/yu020210/youtube-downloader/releases/download/v2.1.0/YouTubeDownloader_v2.1.0_Windows.zip",
     backupDownloadUrl: "PASTE_GOOGLE_DRIVE_BACKUP_URL_HERE",
     manualUrl: "PASTE_USER_GUIDE_URL_HERE",
-    changelogUrl: "https://github.com/yu020210/youtube-downloader/releases/tag/v2.0.0",
+    changelogUrl: "https://github.com/yu020210/youtube-downloader/releases/tag/v2.1.0",
     icon: "../assets/icons/youtube-downloader.png",
     screenshot: "../assets/screenshots/youtube-downloader.png"
   }

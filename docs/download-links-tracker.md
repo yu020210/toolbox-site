@@ -6,19 +6,19 @@
 
 | 工具 | 版本 | 更新日期 | GitHub Release Asset | Google Drive 備用下載 | 使用手冊 | 版本說明 | 備註 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| PDF Toolkit | v2.1.1 | 2026-05-28 | PASTE_GITHUB_RELEASE_ASSET_URL_HERE | PASTE_GOOGLE_DRIVE_BACKUP_URL_HERE | PASTE_USER_GUIDE_URL_HERE | PASTE_RELEASE_NOTES_URL_HERE | 待替換正式連結 |
-| Image Converter | v2.0.0 | 2026-05-28 | PASTE_GITHUB_RELEASE_ASSET_URL_HERE | PASTE_GOOGLE_DRIVE_BACKUP_URL_HERE | PASTE_USER_GUIDE_URL_HERE | PASTE_RELEASE_NOTES_URL_HERE | 待替換正式連結 |
-| Audio Converter | v3.0.0 | 2026-05-28 | PASTE_GITHUB_RELEASE_ASSET_URL_HERE | PASTE_GOOGLE_DRIVE_BACKUP_URL_HERE | PASTE_USER_GUIDE_URL_HERE | PASTE_RELEASE_NOTES_URL_HERE | 待替換正式連結 |
-| YouTube Downloader | v1.7.0 | 2026-05-28 | PASTE_GITHUB_RELEASE_ASSET_URL_HERE | PASTE_GOOGLE_DRIVE_BACKUP_URL_HERE | PASTE_USER_GUIDE_URL_HERE | PASTE_RELEASE_NOTES_URL_HERE | 待替換正式連結 |
+| PDF Toolkit | v2.3.0 | 2026-05-29 | PASTE_GITHUB_RELEASE_ASSET_URL_HERE | PASTE_GOOGLE_DRIVE_BACKUP_URL_HERE | PASTE_USER_GUIDE_URL_HERE | PASTE_RELEASE_NOTES_URL_HERE | 待替換正式連結 |
+| Image Converter | v2.0.0 | 2026-05-29 | PASTE_GITHUB_RELEASE_ASSET_URL_HERE | PASTE_GOOGLE_DRIVE_BACKUP_URL_HERE | PASTE_USER_GUIDE_URL_HERE | PASTE_RELEASE_NOTES_URL_HERE | 待替換正式連結 |
+| Audio Converter | v3.0.0 | 2026-05-29 | PASTE_GITHUB_RELEASE_ASSET_URL_HERE | PASTE_GOOGLE_DRIVE_BACKUP_URL_HERE | PASTE_USER_GUIDE_URL_HERE | PASTE_RELEASE_NOTES_URL_HERE | 待替換正式連結 |
+| YouTube Downloader | v2.1.0 | 2026-08-19 | https://github.com/yu020210/youtube-downloader/releases/download/v2.1.0/YouTubeDownloader_v2.1.0_Windows.zip | PASTE_GOOGLE_DRIVE_BACKUP_URL_HERE | PASTE_USER_GUIDE_URL_HERE | https://github.com/yu020210/youtube-downloader/releases/tag/v2.1.0 | 已上架 GitHub Release |
 
 ## 建議檔名表
 
 | 工具 | Windows 下載檔 | Portable 下載檔 | 使用手冊 |
 | --- | --- | --- | --- |
-| PDF Toolkit | `PDFToolkit_v2.1.1_Windows.zip` | `PDFToolkit_v2.1.1_Portable.zip` | `PDFToolkit_UserGuide.pdf` |
+| PDF Toolkit | `PDFToolkit_v2.3.0_Windows.zip` | `PDFToolkit_v2.3.0_Portable.zip` | `PDFToolkit_UserGuide.pdf` |
 | Image Converter | `ImageConverter_v2.0.0_Windows.zip` | `ImageConverter_v2.0.0_Portable.zip` | `ImageConverter_UserGuide.pdf` |
 | Audio Converter | `AudioConverter_v3.0.0_Windows.zip` | `AudioConverter_v3.0.0_Portable.zip` | `AudioConverter_UserGuide.pdf` |
-| YouTube Downloader | `YouTubeDownloader_v1.7.0_Windows.zip` | `YouTubeDownloader_v1.7.0_Portable.zip` | `YouTubeDownloader_UserGuide.pdf` |
+| YouTube Downloader | `YouTubeDownloader_v2.1.0_Windows.zip` | `YouTubeDownloader_v2.1.0_Portable.zip` | `YouTubeDownloader_UserGuide.pdf` |
 
 ## 更新網站資料時請同步
 
